@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -21,9 +20,36 @@ import MilestoneUnlockingStep from '@/components/study-abroad/MilestoneUnlocking
 import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 
 export interface StudyAbroadData {
+  // Country and program preferences
   selectedCountries: string[];
+  countryPreferences: string[];
   educationLevel: string;
   selectedProgram: string;
+  
+  // Personal information
+  personalInfo: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    dateOfBirth: string;
+  };
+  
+  // Education details
+  education: {
+    level: string;
+    institution: string;
+    gpa: string;
+    graduationYear: string;
+  };
+  
+  // Financial information
+  financial: {
+    budget: string;
+    fundingSource: string[];
+  };
+  
+  // Other details
   hasPassport: boolean;
   selectedCity: string;
   phoneNumber: string;
@@ -60,8 +86,26 @@ const StudyAbroad = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<StudyAbroadData>({
     selectedCountries: [],
+    countryPreferences: [],
     educationLevel: '',
     selectedProgram: '',
+    personalInfo: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      dateOfBirth: '',
+    },
+    education: {
+      level: '',
+      institution: '',
+      gpa: '',
+      graduationYear: '',
+    },
+    financial: {
+      budget: '',
+      fundingSource: [],
+    },
     hasPassport: false,
     selectedCity: '',
     phoneNumber: '',
