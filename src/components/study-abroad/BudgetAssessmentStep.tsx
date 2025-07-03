@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { StudyAbroadData } from '@/pages/StudyAbroad';
-import { DollarSign, PiggyBank, CreditCard, HelpCircle } from 'lucide-react';
+import { DollarSign, PiggyBank, CreditCard, GraduationCap, TrendingUp } from 'lucide-react';
 
 interface BudgetAssessmentStepProps {
   data: StudyAbroadData;
@@ -137,14 +136,62 @@ const BudgetAssessmentStep: React.FC<BudgetAssessmentStepProps> = ({ data, updat
 
   return (
     <div className="space-y-8">
-      {/* Story Introduction */}
-      <div className="text-center p-8 bg-gradient-to-r from-green-50 to-yellow-50 rounded-2xl border border-green-100">
-        <div className="text-6xl mb-4">💰</div>
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Investment Planning</h2>
-        <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
-          Studying abroad is an investment in your future. Let's understand your financial capacity 
-          so we can find the perfect opportunities that match your budget.
+      {/* LeapScholar Branding & Statistics */}
+      <div className="text-center p-8 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 rounded-3xl border border-blue-100">
+        {/* LeapScholar Logo */}
+        <div className="mb-6">
+          <div className="inline-flex items-center justify-center gap-2 mb-4">
+            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+              <GraduationCap className="w-5 h-5 text-white" />
+            </div>
+            <span className="text-2xl font-bold">
+              <span className="text-blue-600">LEAP</span>
+              <span className="text-orange-500">SCHOLAR</span>
+            </span>
+          </div>
+        </div>
+
+        <h1 className="text-4xl font-bold text-gray-900 mb-3">Your Path to Affordable Education</h1>
+        <p className="text-lg text-gray-600 mb-8">
+          We've helped thousands of students achieve their study abroad dreams
         </p>
+
+        {/* Statistics */}
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
+          <div className="flex flex-col items-center">
+            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4">
+              <GraduationCap className="w-8 h-8 text-white" />
+            </div>
+            <div className="text-3xl font-bold text-blue-600 mb-1">18Cr+</div>
+            <div className="text-sm text-gray-600">Scholarships Awarded</div>
+          </div>
+          
+          <div className="flex flex-col items-center">
+            <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mb-4">
+              <TrendingUp className="w-8 h-8 text-white" />
+            </div>
+            <div className="text-3xl font-bold text-orange-600 mb-1">20-30%</div>
+            <div className="text-sm text-gray-600">Average Scholarship</div>
+          </div>
+          
+          <div className="flex flex-col items-center">
+            <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-500 rounded-2xl flex items-center justify-center mb-4">
+              <DollarSign className="w-8 h-8 text-white" />
+            </div>
+            <div className="text-xl font-bold text-green-600 mb-1">Lowest Interest Loans</div>
+            <div className="text-sm text-gray-600">Flexible repayment options</div>
+          </div>
+        </div>
+
+        {/* Transition Message */}
+        <div className="bg-gradient-to-r from-blue-100 to-purple-100 p-6 rounded-2xl border border-blue-200">
+          <p className="text-gray-700 leading-relaxed mb-4">
+            Keeping all these financial support options aside, let's understand your minimum tuition budget investment.
+          </p>
+          <p className="text-gray-600 text-sm">
+            This will help us suggest the best universities and financial planning options for you.
+          </p>
+        </div>
       </div>
 
       {/* Budget Range Selection */}
