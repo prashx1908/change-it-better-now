@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { StudyAbroadData } from '@/pages/StudyAbroad';
-import { BookOpen, TrendingUp, Award, Briefcase } from 'lucide-react';
+import { GraduationCap, Calendar, Briefcase, Award } from 'lucide-react';
 
 interface AcademicDetailsStepProps {
   data: StudyAbroadData;
@@ -28,131 +28,229 @@ const AcademicDetailsStep: React.FC<AcademicDetailsStepProps> = ({ data, updateD
   };
 
   return (
-    <div className="space-y-8">
-      {/* Story Introduction */}
-      <div className="text-center p-8 bg-gradient-to-r from-indigo-50 to-blue-50 rounded-2xl border border-indigo-100">
-        <div className="text-6xl mb-4">📖</div>
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Your Academic Story</h2>
-        <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
-          Every academic journey is unique. Share the details of your educational path so we can 
-          craft the perfect strategy for your international studies.
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-50 to-indigo-100 p-8">
+      <div className="max-w-4xl mx-auto">
+        {/* Header Section */}
+        <div className="text-center mb-12">
+          <div className="text-6xl mb-6">📖</div>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Your Academic Journey</h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Let's understand your educational background to craft your perfect study abroad story
+          </p>
+        </div>
 
-      <div className="max-w-2xl mx-auto space-y-6">
-        {/* Degree Information */}
-        <div className="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <BookOpen size={24} className="text-blue-600" />
-            <h3 className="text-xl font-semibold">Degree Details</h3>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="degree">Degree/Course *</Label>
-              <Input
-                id="degree"
-                placeholder="e.g., Bachelor of Engineering"
-                value={data.academicDetails.degree}
-                onChange={(e) => handleInputChange('degree', e.target.value)}
-                className="transition-all duration-200 focus:ring-2 focus:ring-blue-500"
-              />
+        {/* Main Content Card */}
+        <div className="bg-white rounded-3xl shadow-2xl p-8 mb-8">
+          <div className="space-y-8">
+            {/* Degree Section */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                  <GraduationCap className="text-blue-600" size={24} />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900">My degree is</h3>
+                  <p className="text-gray-600">Tell us about your current or completed degree</p>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6 pl-16">
+                <div className="space-y-2">
+                  <Select 
+                    value={data.academicDetails.degree} 
+                    onValueChange={(value) => handleInputChange('degree', value)}
+                  >
+                    <SelectTrigger className="h-12 text-base border-2 border-gray-200 hover:border-blue-400 transition-colors">
+                      <SelectValue placeholder="Final Year Bachelor's" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="high-school">12th Grade</SelectItem>
+                      <SelectItem value="bachelors-not-final">Bachelor's (Not Final Year)</SelectItem>
+                      <SelectItem value="bachelors-final">Final Year Bachelor's</SelectItem>
+                      <SelectItem value="bachelors-completed">Completed Bachelor's</SelectItem>
+                      <SelectItem value="masters">Master's Degree</SelectItem>
+                      <SelectItem value="mbbs">MBBS</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
             </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="specialization">Specialization *</Label>
-              <Input
-                id="specialization"
-                placeholder="e.g., Computer Science"
-                value={data.academicDetails.specialization}
-                onChange={(e) => handleInputChange('specialization', e.target.value)}
-                className="transition-all duration-200 focus:ring-2 focus:ring-blue-500"
-              />
+
+            {/* Specialization Section */}
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="text-lg text-gray-700 font-medium pt-2">I specialized in</div>
+              </div>
+              
+              <div className="pl-16">
+                <Select 
+                  value={data.academicDetails.specialization} 
+                  onValueChange={(value) => handleInputChange('specialization', value)}
+                >
+                  <SelectTrigger className="h-12 text-base border-2 border-gray-200 hover:border-blue-400 transition-colors max-w-md">
+                    <SelectValue placeholder="Electronics & Communication" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="computer-science">Computer Science</SelectItem>
+                    <SelectItem value="electronics-communication">Electronics & Communication</SelectItem>
+                    <SelectItem value="mechanical">Mechanical Engineering</SelectItem>
+                    <SelectItem value="civil">Civil Engineering</SelectItem>
+                    <SelectItem value="electrical">Electrical Engineering</SelectItem>
+                    <SelectItem value="business">Business Administration</SelectItem>
+                    <SelectItem value="finance">Finance</SelectItem>
+                    <SelectItem value="marketing">Marketing</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            {/* Grade Section */}
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="text-lg text-gray-700 font-medium pt-2">My grade type is</div>
+              </div>
+              
+              <div className="pl-16 flex items-center gap-4">
+                <Select 
+                  value={data.academicDetails.grade} 
+                  onValueChange={(value) => handleInputChange('grade', value)}
+                >
+                  <SelectTrigger className="h-12 text-base border-2 border-gray-200 hover:border-blue-400 transition-colors w-48">
+                    <SelectValue placeholder="CGPA of" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="cgpa">CGPA of</SelectItem>
+                    <SelectItem value="percentage">Percentage of</SelectItem>
+                    <SelectItem value="gpa">GPA of</SelectItem>
+                  </SelectContent>
+                </Select>
+                
+                <span className="text-lg text-gray-700">with</span>
+                
+                <div className="space-y-1">
+                  <Input
+                    placeholder="0"
+                    className="h-12 w-24 text-center text-base border-2 border-gray-200 hover:border-blue-400 transition-colors"
+                    value={data.academicDetails.backlogs || ''}
+                    onChange={(e) => handleInputChange('backlogs', e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Backlogs Section */}
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="text-lg text-gray-700 font-medium pt-2">I have</div>
+              </div>
+              
+              <div className="pl-16 flex items-center gap-2">
+                <Input
+                  placeholder="12"
+                  className="h-12 w-20 text-center text-base border-2 border-gray-200 hover:border-blue-400 transition-colors"
+                  value={data.academicDetails.backlogs || ''}
+                  onChange={(e) => handleInputChange('backlogs', parseInt(e.target.value) || 0)}
+                />
+                <span className="text-lg text-gray-700">backlogs</span>
+              </div>
+            </div>
+
+            {/* Graduation Timeline */}
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="text-lg text-gray-700 font-medium pt-2">Graduated or graduating in</div>
+              </div>
+              
+              <div className="pl-16">
+                <Input
+                  placeholder="23"
+                  className="h-12 w-20 text-center text-base border-2 border-gray-200 hover:border-blue-400 transition-colors"
+                  value={data.academicDetails.graduationTime || ''}
+                  onChange={(e) => handleInputChange('graduationTime', e.target.value)}
+                />
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Academic Performance */}
-        <div className="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <TrendingUp size={24} className="text-green-600" />
-            <h3 className="text-xl font-semibold">Academic Performance</h3>
+        {/* Year Gap Section */}
+        <div className="bg-gradient-to-r from-purple-400 to-blue-500 rounded-3xl p-8 mb-8 text-white">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+              <Calendar className="text-white" size={24} />
+            </div>
+            <h3 className="text-2xl font-bold">Year Gap</h3>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="grade">Grade/CGPA *</Label>
-              <Input
-                id="grade"
-                placeholder="e.g., 8.5 CGPA or 85%"
-                value={data.academicDetails.grade}
-                onChange={(e) => handleInputChange('grade', e.target.value)}
-                className="transition-all duration-200 focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="backlogs">Number of Backlogs</Label>
-              <Select 
-                value={data.academicDetails.backlogs.toString()} 
-                onValueChange={(value) => handleInputChange('backlogs', parseInt(value))}
-              >
-                <SelectTrigger className="transition-all duration-200 focus:ring-2 focus:ring-blue-500">
-                  <SelectValue placeholder="Select backlogs" />
-                </SelectTrigger>
-                <SelectContent>
-                  {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(num => (
-                    <SelectItem key={num} value={num.toString()}>
-                      {num === 0 ? 'No backlogs' : `${num} backlog${num > 1 ? 's' : ''}`}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        </div>
-
-        {/* Timeline */}
-        <div className="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <Award size={24} className="text-purple-600" />
-            <h3 className="text-xl font-semibold">Timeline</h3>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="graduationTime">Graduation Timeline</Label>
-              <Select 
-                value={data.academicDetails.graduationTime} 
-                onValueChange={(value) => handleInputChange('graduationTime', value)}
-              >
-                <SelectTrigger className="transition-all duration-200 focus:ring-2 focus:ring-blue-500">
-                  <SelectValue placeholder="When will/did you graduate?" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="already-graduated">Already graduated</SelectItem>
-                  <SelectItem value="graduating-2024">Graduating in 2024</SelectItem>
-                  <SelectItem value="graduating-2025">Graduating in 2025</SelectItem>
-                  <SelectItem value="graduating-2026">Graduating in 2026</SelectItem>
-                  <SelectItem value="other">Other</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="yearGap">Year Gap (if any)</Label>
+          <div className="pl-16">
+            <div className="flex items-center gap-4">
+              <span className="text-lg">I had a career gap of</span>
               <Select 
                 value={data.academicDetails.yearGap} 
                 onValueChange={(value) => handleInputChange('yearGap', value)}
               >
-                <SelectTrigger className="transition-all duration-200 focus:ring-2 focus:ring-blue-500">
-                  <SelectValue placeholder="Any gap years?" />
+                <SelectTrigger className="h-12 text-base bg-white/20 border-white/30 text-white w-64">
+                  <SelectValue placeholder="Less than 12 months" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="no-gap">No gap</SelectItem>
-                  <SelectItem value="1-year">1 year gap</SelectItem>
-                  <SelectItem value="2-years">2 years gap</SelectItem>
-                  <SelectItem value="3-years">3 years gap</SelectItem>
+                  <SelectItem value="less-than-12">Less than 12 months</SelectItem>
+                  <SelectItem value="1-year">1 year</SelectItem>
+                  <SelectItem value="2-years">2 years</SelectItem>
+                  <SelectItem value="more-than-2">More than 2 years</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </div>
+
+        {/* Work Experience Section */}
+        <div className="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-3xl p-8 mb-8 text-white">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+              <Briefcase className="text-white" size={24} />
+            </div>
+            <h3 className="text-2xl font-bold">Work Experience</h3>
+          </div>
+          
+          <div className="pl-16">
+            <div className="flex items-center gap-4 mb-4">
+              <span className="text-lg">I worked as</span>
+              <Select 
+                value={data.academicDetails.workExperience} 
+                onValueChange={(value) => handleInputChange('workExperience', value)}
+              >
+                <SelectTrigger className="h-12 text-base bg-white/20 border-white/30 text-white w-64">
+                  <SelectValue placeholder="Software Engineer" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="no-experience">No work experience</SelectItem>
+                  <SelectItem value="software-engineer">Software Engineer</SelectItem>
+                  <SelectItem value="data-analyst">Data Analyst</SelectItem>
+                  <SelectItem value="consultant">Consultant</SelectItem>
+                  <SelectItem value="teacher">Teacher</SelectItem>
+                  <SelectItem value="researcher">Researcher</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+              <span className="text-lg">for</span>
+            </div>
+            
+            <div className="pl-0">
+              <Select 
+                value={data.academicDetails.graduationTime} 
+                onValueChange={(value) => handleInputChange('graduationTime', value)}
+              >
+                <SelectTrigger className="h-12 text-base bg-white/20 border-white/30 text-white w-64">
+                  <SelectValue placeholder="Select Duration" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="internship">Internship only</SelectItem>
+                  <SelectItem value="less-than-1">Less than 1 year</SelectItem>
+                  <SelectItem value="1-2-years">1-2 years</SelectItem>
+                  <SelectItem value="2-3-years">2-3 years</SelectItem>
                   <SelectItem value="more-than-3">More than 3 years</SelectItem>
                 </SelectContent>
               </Select>
@@ -160,66 +258,18 @@ const AcademicDetailsStep: React.FC<AcademicDetailsStepProps> = ({ data, updateD
           </div>
         </div>
 
-        {/* Work Experience */}
-        <div className="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <Briefcase size={24} className="text-orange-600" />
-            <h3 className="text-xl font-semibold">Work Experience</h3>
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="workExperience">Work Experience</Label>
-            <Select 
-              value={data.academicDetails.workExperience} 
-              onValueChange={(value) => handleInputChange('workExperience', value)}
+        {/* Continue Button */}
+        {isFormValid() && (
+          <div className="text-center">
+            <Button
+              onClick={onNext}
+              size="lg"
+              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 px-12 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              <SelectTrigger className="transition-all duration-200 focus:ring-2 focus:ring-blue-500">
-                <SelectValue placeholder="Your work experience" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="no-experience">No work experience</SelectItem>
-                <SelectItem value="internships">Internships only</SelectItem>
-                <SelectItem value="less-than-1">Less than 1 year</SelectItem>
-                <SelectItem value="1-2-years">1-2 years</SelectItem>
-                <SelectItem value="2-3-years">2-3 years</SelectItem>
-                <SelectItem value="3-5-years">3-5 years</SelectItem>
-                <SelectItem value="more-than-5">More than 5 years</SelectItem>
-              </SelectContent>
-            </Select>
-            <p className="text-sm text-gray-500">Include full-time, part-time, and internship experience</p>
+              Continue My Story →
+            </Button>
           </div>
-        </div>
-
-        {/* Academic Tips */}
-        <div className="bg-blue-50 p-6 rounded-2xl border border-blue-200">
-          <h4 className="font-semibold text-lg mb-3 text-blue-900">💡 Academic Tips</h4>
-          <div className="space-y-2 text-sm text-blue-800">
-            <p>• <strong>Grades:</strong> We'll help you convert your grades to international standards</p>
-            <p>• <strong>Backlogs:</strong> Don't worry about backlogs - we'll find universities that match your profile</p>
-            <p>• <strong>Gaps:</strong> Gap years can be explained positively with the right narrative</p>
-            <p>• <strong>Experience:</strong> Any work experience adds value to your application</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Continue Button */}
-      {isFormValid() && (
-        <div className="text-center pt-8">
-          <Button
-            onClick={onNext}
-            size="lg"
-            className="bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 px-8 py-4 text-lg rounded-xl"
-          >
-            Continue Your Story →
-          </Button>
-        </div>
-      )}
-
-      {/* Motivation Message */}
-      <div className="text-center p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-100">
-        <p className="text-lg text-gray-700 italic">
-          "Your academic journey shapes who you are, but your dreams determine where you're going." - Keep building!
-        </p>
+        )}
       </div>
     </div>
   );
